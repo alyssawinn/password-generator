@@ -1,14 +1,38 @@
 // Assignment code here
 function createPassword() {
-  var useCharacters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-  "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-  " ", "!", '"', "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "^", "_", "`", "{", "}", "|", "~"];
+  var lowercaseCharacters = ["abcdefghijklmnopqrstuvwxyz"];
+  var uppercaseCharacters = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+  var numberCharacters = ["0123456789"];
+  var specialCharacters = ["!#$%&'()*+,-./:;<=>?@[]^_`{}|~"];
+
+  var availableCharacters = [];
+  var generatedPassword = [];
+
+  if (passwordAttributes.lowercaseChar === true) {
+    availableCharacters = lowercaseCharacters
+  }
+
+  if (passwordAttributes.uppercaseChar === true) {
+    availableCharacters += uppercaseCharacters;
+  }
+
+  if (passwordAttributes.numericChar === true) {
+    availableCharacters += numberCharacters;
+  }
+
+  if (passwordAttributes.specialChar === true) {
+    availableCharacters += specialCharacters;
+  }
 
   for (var i=0; i < passwordAttributes.length; i++) {
-    var randomIndex = [Math.floor(Math.random() * useCharacters.length)];
-    console.log(useCharacters[randomIndex]);
-  }
+      var randomIndex = [Math.floor(Math.random() * availableCharacters.length)];
+      generatedPassword.push(availableCharacters[randomIndex]);
+    }
+
+  var passwordString = generatedPassword.join("");
+  console.log(passwordString);
+
+  passwordAttributes.passwordChar = passwordString;
 }
 
 function validatePassword() {
@@ -52,6 +76,8 @@ function generatePassword() {
           validatePassword();
         }
       }
+
+      return passwordAttributes.passwordChar;
 }
 
 var passwordAttributes = [
