@@ -1,5 +1,5 @@
 // Assignment code here
-//creates random password based on character types and adds it to object
+//creates random password based on character types and adds it to
 function createPassword() {
   var lowercaseCharacters = ["abcdefghijklmnopqrstuvwxyz"];
   var uppercaseCharacters = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
