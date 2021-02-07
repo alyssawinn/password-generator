@@ -1,7 +1,7 @@
 # Random Password Generator
 
 ## Description
-User clicks button to provide number of characters and character types needed in password
+User clicks button to provide number of characters and character types needed in password  
 Password is generated in read-only box to copy + paste
 
 ## Links
