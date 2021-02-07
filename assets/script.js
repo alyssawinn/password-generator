@@ -1,4 +1,5 @@
 // Assignment code here
+//creates random password based on character types and adds it to object
 function createPassword() {
   var lowercaseCharacters = ["abcdefghijklmnopqrstuvwxyz"];
   var uppercaseCharacters = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
@@ -30,12 +31,11 @@ function createPassword() {
     }
 
   var passwordString = generatedPassword.join("");
-  console.log(passwordString);
-
   passwordAttributes.passwordChar = passwordString;
 }
 
-function validatePassword() {
+//confirms character types neeeded in password
+function determineCharacters() {
   var includeLowercase = window.confirm("Should your password contain lowercase letters?");
   var includeUppercase = window.confirm("Should your password contain uppercase letters?");
   var includeNumeric = window.confirm("Should your password contain numbers?");
@@ -43,7 +43,7 @@ function validatePassword() {
 
   if (!includeLowercase && !includeUppercase && !includeNumeric && !includeSpecial) {
     window.alert("At least one character type must be selected.");
-    validatePassword();
+    determineCharacters();
   } else {
       if (includeLowercase) {
         passwordAttributes.lowercaseChar = true;
@@ -61,6 +61,7 @@ function validatePassword() {
     }
 }
 
+//requests and validates number of characters; returns password once created
 function generatePassword() {
   var passwordLength = window.prompt("How many characters do you want your password to be?");
   passwordLength = parseInt(passwordLength);
@@ -73,13 +74,14 @@ function generatePassword() {
           generatePassword();
         } else {
           passwordAttributes.length = passwordLength;
-          validatePassword();
+          determineCharacters();
         }
       }
 
       return passwordAttributes.passwordChar;
 }
 
+//password attributes object
 var passwordAttributes = [
   {
     length: 0,
