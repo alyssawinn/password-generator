@@ -10,7 +10,7 @@ function createPassword() {
   var generatedPassword = [];
 
   if (passwordAttributes.lowercaseChar === true) {
-    availableCharacters = lowercaseCharacters
+    availableCharacters += lowercaseCharacters
   }
 
   if (passwordAttributes.uppercaseChar === true) {
@@ -63,6 +63,7 @@ function determineCharacters() {
 
 //requests and validates number of characters; returns password once created
 function generatePassword() {
+  passwordAttributes.reset();
   var passwordLength = window.prompt("How many characters do you want your password to be?");
   passwordLength = parseInt(passwordLength);
     if (Number.isNaN(passwordLength)) {
@@ -82,16 +83,20 @@ function generatePassword() {
 }
 
 //password attributes object
-var passwordAttributes = [
-  {
+var passwordAttributes = {
     length: 0,
     lowercaseChar: false,
     uppercaseChar: false,
     specialChar: false,
     numericChar: false,
-    passwordChar: ""
-  }
-]
+    passwordChar: "",
+    reset: function () {
+      this.lowercaseChar = false;
+      this.uppercaseChar = false;
+      this.specialChar = false;
+      this.numericChar = false;
+    }
+  };
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
